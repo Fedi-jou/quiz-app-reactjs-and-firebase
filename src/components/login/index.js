@@ -1,35 +1,37 @@
-import React, { useContext } from "react";
-import { useEffect, useState } from "react/cjs/react.development";
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import { FirebaseContext } from "../firebase";
-import { useHistory, Link } from "react-router-dom";
 
-const Login = () => {
-  const history = useHistory();
+const Login = (props) => {
+  const firebase = useContext(FirebaseContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [btn, setBtn] = useState(false);
   const [error, setError] = useState("");
-  const firebase = useContext(FirebaseContext);
 
   useEffect(() => {
-    if (email !== "" && password !== "" && password.length > 5) setBtn(true);
-    else if (btn) setBtn(false);
-  }, [email, password, btn]);
+    if (password.length > 5 && email !== "") {
+      setBtn(true);
+    } else if (btn) {
+      setBtn(false);
+    }
+  }, [password, email, btn]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     firebase
       .loginUser(email, password)
       .then((user) => {
-        console.log(user);
         setEmail("");
         setPassword("");
-        history.push("/welcome");
+        props.history.push("/welcome");
       })
       .catch((error) => {
         setError(error);
-        setPassword("");
         setEmail("");
+        setPassword("");
       });
   };
 
@@ -73,7 +75,7 @@ const Login = () => {
             </form>
             <div className="linkContainer">
               <Link className="simpleLink" to="/signup">
-                You don't have an account signup here
+                Nouveau sur Marvel Quiz ? Inscrivez-vous maintenant.
               </Link>
               <br />
               <Link className="simpleLink" to="/forgetpassword">
@@ -86,4 +88,5 @@ const Login = () => {
     </div>
   );
 };
+
 export default Login;
