@@ -1,4 +1,4 @@
-# a french quiz game for the fan of the fantasy world and super heros 
+# A quiz game for the fan of the fantasy world and super heros 
 ## authentification and login with firebase 
 ### other packages : 
 1. react-stepper-horizontal
