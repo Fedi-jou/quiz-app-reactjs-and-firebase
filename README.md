@@ -1,3 +1,14 @@
+# a french quiz game for the fan of the fantasy world and super heros 
+## authentification and login with firebase 
+### other packages : 
+1. react-stepper-horizontal
+2. react-toastify
+3. react-tooltip
+4. prop-types 
+5. axios 
+6. react-icons
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
